@@ -12,5 +12,8 @@ build-compose:
 	&& envsubst < docker-compose.tmpl.yml > docker-compose.yml \
 	&& docker build -t $$IMAGE_TAG .
 
+gql-schema:
+	./.bin/fastgql generate --config internal/app/delivery/gql/gqlgen.yml
+
 dev:
 	./.bin/fiber dev

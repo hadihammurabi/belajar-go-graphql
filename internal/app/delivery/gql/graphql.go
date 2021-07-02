@@ -4,10 +4,12 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/hadihammurabi/belajar-go-graphql/config"
+	"github.com/hadihammurabi/belajar-go-graphql/internal/app/delivery/gql/generated"
 	"github.com/hadihammurabi/belajar-go-graphql/internal/app/service"
 	"github.com/sarulabs/di"
 
-	"github.com/gofiber/adaptor/v2"
+	"github.com/arsmn/fastgql/graphql/handler"
+	"github.com/arsmn/fastgql/graphql/playground"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 )
@@ -40,7 +42,21 @@ func Init(ioc di.Container) *Delivery {
 		Validator: config.NewValidator(),
 	}
 
-	h := InitSchema(delivery)
-	delivery.HTTP.Use("/gql", adaptor.HTTPHandler(h))
+	gqlServer := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &Resolver{
+		Delivery: delivery,
+	}}))
+	gqlHandler := gqlServer.Handler()
+	gqlPlayground := playground.Handler("GraphQL Playground", "/gql")
+
+	delivery.HTTP.All("/gql", func(c *fiber.Ctx) error {
+		gqlHandler(c.Context())
+		return nil
+	})
+
+	app.All("/gqil", func(c *fiber.Ctx) error {
+		gqlPlayground(c.Context())
+		return nil
+	})
+
 	return delivery
 }
