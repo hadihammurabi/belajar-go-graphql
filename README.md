@@ -1,5 +1,5 @@
-# Belajar Go REST API
-Belajar REST API dengan bahasa pemrograman Go.
+# Belajar Go GraphQL
+Belajar GraphQL dengan bahasa pemrograman Go.
 
 # Daftar Isi
 * [Fitur](#fitur)
@@ -13,9 +13,9 @@ Belajar REST API dengan bahasa pemrograman Go.
 
 # Fitur
 Projek ini sudah siap dijalankan dan dapat dimodifikasi sesuai kebutuhan masing-masing. Adapun kemampuan projek ini:
-1. Dapat menjadi backend dari REST API.
-2. Dapat menjadi service dalam rangkaian microservices.
-3. Dapat menyediakan dokumentasi API melalui Swagger.
+1. Dapat menjadi backend dari GraphQL.
+2. Dilengkapi Graphiql.
+3. Dapat menjadi service dalam rangkaian microservices.
 4. Support berbagai koneksi database, seperti MySQL, PostgreSQL, SQLite, dan SQL Server.
 5. Support migrasi database dalam bentuk file SQL.
 6. Support [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
@@ -30,10 +30,11 @@ Struktur proyek ini mengikuti konsep-konsep arsitektural seperti:
 Nama | Kegunaan
 -|-
 [Go](https://golang.org) | Bahasa Pemrograman
-[Fiber](https://docs.gofiber.io) | Web Framework
+[Fiber](https://docs.gofiber.io) | HTTP Framework
 [PostgreSQL](https://www.postgresql.org) | Database Management System
 [Gorm](https://gorm.io/index.html) | Object-Relational Mapper
 [Jwt](https://jwt.io) | Token untuk Otentikasi
+[GraphQL Go](https://github.com/graphql-go/graphql) | Engine GraphQL
 
 # Utilitas Pihak Ketiga
 Nama | Kegunaan
